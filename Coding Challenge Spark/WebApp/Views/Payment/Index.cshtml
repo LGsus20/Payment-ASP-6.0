@@ -1,0 +1,75 @@
+﻿
+@model IEnumerable<Payment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-1">
+    <div class="row pt-4">
+        <div class="col-12">
+            <h2 class="text-primary">Payment List</h2>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-bordered table-striped" style="width:100%"> 
+    <thead>
+        <tr>
+            <th>
+                
+            </th>
+            <th>
+                Payment Name
+            </th>
+            <th>
+                ID
+            </th>
+            <th>
+                Amount
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <form asp-controller="Payment" asp-action="DeleteBulk" method="post">
+            <div class="mt-4">
+            <a asp-controller="Payment" asp-action="Create" class="btn btn-primary ml-auto col-1 mr-2">Create Payment</a>
+            <button type="submit" class="col-1 btn btn-danger">Delete Selected</button>
+            </div>
+
+            @foreach(var obj in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="selectedIds" value="@obj.PaymentID" id="chk_@obj.PaymentID" />
+
+                        </td>
+                        <td width="50%">
+                            @obj.PaymentName
+
+                        </td>
+                        <td width="20%">
+                            @obj.PaymentID
+
+                        </td>
+                        <td width="20%">
+                            @obj.PaymentAmount
+
+                        </td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Payment" asp-action="Edit" asp-route-id="@obj.PaymentID"
+                                class="btn btn-primary mx-1"> Edit </a>
+                                <a asp-controller="Payment" asp-action="Delete" asp-route-id="@obj.PaymentID"
+                                class="btn btn-danger mx-2"> Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+        </form>
+    </tbody>
+</table>
+

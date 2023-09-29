@@ -1,0 +1,33 @@
+﻿@model Payment
+<form method="post" asp-action="Edit">
+    <input asp-for="PaymentID" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">
+                Edit Payment
+            </h2>
+            <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="PaymentName">Name</label>
+            <input asp-for="PaymentName" class="form-control" />
+            <span asp-validation-for="PaymentName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PaymentAmount">Amount</label>
+            <input asp-for="PaymentAmount" class="form-control" />
+            <span asp-validation-for="PaymentAmount" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px"> Update Payment </button>
+        <a asp-controller="Payment" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back To List
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
